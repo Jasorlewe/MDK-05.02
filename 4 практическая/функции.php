@@ -71,6 +71,9 @@ function sumOfSquares($num){
     foreach ($num as $n){
         $sum += $n*$n;
     }
+    echo"все числа массива: $num<br>";
+    foreach($d as $s){
+    echo $s . ' ';
     echo "сумма квадратов: $sum<br>";
 }
 sumOfSquares([2,3,4]);
