@@ -48,7 +48,64 @@ echo countWords($str)
 ?>
 <h2>Задание 3</h2>
 <?php
-function twinLetters(){
-    
+function twinLetter($str) {
+    $len = strlen($str);
+    $word = ""; // Текущее слово
+    $result = ""; // Результат
+
+    for ($i = 0; $i <= $len; $i++) {
+        // Чтобы обработать последнее слово, добавляем пробел в конец
+        $char = ($i < $len) ? $str[$i] : ' ';
+
+        if ($char != ' ' && $char != '.') {
+            $word = $word . $char; // Собираем слово по буквам
+        } else {
+            // Если слово закончилось, проверяем его
+            if ($word != "") {
+                $wlen = strlen($word);
+                // Если первая буква равна последней
+                if ($word[0] == $word[$wlen - 1]) {
+                    $result = $result . $word . " ";
+                }
+                $word = ""; // Обнуляем слово для следующего
+            }
+        }
+    }
+    return $result;
 }
+$str = 'gg ab gg';
+echo "исходная строка: $str<br>";
+echo 'слова с одинаковой буквой в начале и в конце: ';
+echo twinLetter($str);
+?>
+<h2>задание 4</h2>
+<?php
+function countLetter($str) {
+    $len = strlen($str);
+    $result = ""; // Здесь будут только уникальные символы
+    $count = 0;
+
+    for ($i = 0; $i < $len; $i++) {
+        $char = $str[$i];
+        $found = false; // Ищем, есть ли уже такой символ
+
+        // Проверяем все символы, которые мы уже записали
+        for ($j = 0; $j < $count; $j++) {
+            if ($result[$j] == $char) {
+                $found = true; // Нашли дубликат
+            }
+        }
+
+        // Если такого символа еще не было - добавляем
+        if ($found == false) {
+            $result = $result . $char;
+            $count = $count + 1;
+        }
+    }
+    return "Количество: " . $count . ". Символы: " . $result;
+}
+$str = ' ';
+echo "исходная строка: $str<br>";
+echo 'одинаковых символов: ';
+echo twinLetter($str);
 ?>
